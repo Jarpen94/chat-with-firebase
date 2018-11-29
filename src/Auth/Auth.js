@@ -15,6 +15,11 @@ class Auth extends React.Component {
     componentDidMount() {
         auth.onAuthStateChanged(
             user => {
+                if (user) {
+                    this.setState({ isUserLoggedIn: true })
+                } else {
+                    this.setState({ isUserLoggedIn: false })
+                }
                 console.log(user)
             }
         )
@@ -25,8 +30,10 @@ class Auth extends React.Component {
 
     onLogClick = () => {
         auth.signInWithEmailAndPassword(this.state.username, this.state.password)
-            .then(console.log)
-            .catch(console.log)
+            .catch(error => {
+                alert('Ups, coś poszło nie tak!')
+                console.log(error)
+            })
     }
 
     onLogInByGoogleCLick = () => { }
