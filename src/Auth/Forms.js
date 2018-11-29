@@ -17,7 +17,7 @@ const Forms = (props) => (
         <TextField
             name="email"
             type="email"
-            floatingLabelText = "E-mail"
+            floatingLabelText="E-mail"
             value={props.username}
             onChange={props.UserHandler}
             fullWidth={true}
@@ -25,7 +25,7 @@ const Forms = (props) => (
 
         <TextField
             name='cokolwiek'
-            floatingLabelText = "Password"
+            floatingLabelText="Password"
             value={props.password}
             onChange={props.PasswordHandler}
             type="password"
@@ -39,7 +39,7 @@ const Forms = (props) => (
             </RaisedButton>
 
             <RaisedButton
-
+                onClick={props.onLogInByGoogleCLick}
                 label={'Login by Google'}
                 primary={true}
             >
