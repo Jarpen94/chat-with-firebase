@@ -1,8 +1,9 @@
 import React from 'react'
-import { ListItem } from 'material-ui';
+import { ListItem } from 'material-ui'
 import IconButton from 'material-ui/IconButton'
 import DeleteIcon from 'material-ui/svg-icons/action/delete'
 import moment from 'moment'
+import Avatar from 'material-ui/Avatar'
 
 const MessagesList = (props) => (
     <div>
@@ -10,8 +11,16 @@ const MessagesList = (props) => (
         {
             props.messages.map(message => (
                 <ListItem
+                    leftAvatar={
+                        <Avatar
+                            src={message.author.img}
+                        />
+                    }
                     primaryText={message.text}
-                    secondaryText={moment(message.timestamp).format('DD-MM-YYYY hh:mm')}
+                    secondaryText={`
+                        ${moment(message.timestamp).format('DD-MM-YYYY hh:mm')}
+                        ${message.author.displayName || message.author.email}
+                        `}
                     key={message.key}
                     rightIconButton={
                         <IconButton

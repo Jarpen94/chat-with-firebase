@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { database } from '../firebase'
+import { auth, database } from '../firebase'
 import { mapObjectToArray } from './utils'
 
 import NewMessageForm from './NewMessageForm';
@@ -36,16 +36,24 @@ class Chat extends React.Component {
 
     onNewMessageTextChangeHandler = event => this.setState({ newMessageText: event.target.value })
 
-    onNewMessageAddClickHandler = () => {
+    onNewMessageAddClickHandler = event => {
+        event.preventDefault()
+
         dbMessagesRef.push({
             text: this.state.newMessageText,
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            author: {
+                email: auth.currentUser.email,
+                displayName: auth.currentUser.displayName,
+                img: auth.currentUser.photoURL || `https://api.adorable.io/avatars/50/${auth.currentUser.email}`
+
+            }
         })
     }
 
     onDeleteMessageClickHandler = messageKey => {
         dbMessagesRef.child(messageKey)
-        .remove()
+            .remove()
     }
 
 
