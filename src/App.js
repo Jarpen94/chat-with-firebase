@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
-import Chat from './Chat'
+import React from 'react';
+import Auth from './Auth'
+import Chat from './Chat/Chat'
 
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Chat />
+const App = (props) => (
 
-      </div>
-    );
-  }
-}
+  <div>
+    <Auth>
+
+      <Chat />
+
+    </Auth>
+
+
+  </div>
+);
+
 
 export default App;
